@@ -1,0 +1,826 @@
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:  "Noto Sans JP", sans-serif;
+  color: #333;
+}
+ul,li{
+  list-style: none;
+  padding: 0;
+}
+a{
+  text-decoration: none;
+  color: #333;
+}
+*{
+  margin: 0;
+}
+
+.button{
+  width: 250px;
+  height: 70px;
+  border: 2px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  position: relative;
+  overflow: hidden;
+  transition: all .4s ease;
+  cursor: pointer;
+  
+  z-index: 2;
+  &::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-color: #333;
+    transition: all .4s ease;
+    z-index: -1;
+  }
+  &:hover{
+    color: #fff;
+    &::before{
+      transform: none;
+    }
+  }
+}
+
+// 
+//モバイルファースト
+//header
+.header{
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  z-index: 99;
+  background-color: rgba(255,255,255,0.8);
+
+  &__inner{
+    position: relative;
+    max-width: 1200px;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__nav{
+    display: none;
+  }
+
+  & .ham{
+    background-color: unset;
+    border: none;
+    outline: none !important;
+    cursor: pointer;
+    z-index: 10;
+    overflow: hidden;
+
+    & > span {
+        background-color: #333;
+        width: 35px;
+        height: 2px;
+        display: block;
+        margin-bottom: 9px;
+        transition: transform 0.7s;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+  }
+
+  & .mobile{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    transition: transform .4s ease;
+
+    &__menu{
+      text-align: center;
+      padding: 20px;
+    }
+
+    &__li{
+      margin-bottom: 24px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+.menu-open{
+  &.mobile{
+    transform: translateY(0);
+  }
+
+  &.ham{
+    & > span{
+      &:nth-child(1){
+        transform: translateY(10px)rotate(135deg);
+      }
+  
+      &:nth-child(2){
+        transform: translateX(-100%);
+      }
+  
+      &:nth-child(3){
+        transform: translateY(-10px)rotate(-135deg);
+
+      }
+    }
+    
+  }
+}  
+
+}
+//visial
+.view{
+  width: 100%;
+  height: 100vh;
+  &__img{
+    width: 100%;
+    height: 100%;
+    & > img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+//about
+.about{
+  margin: 150px 0;
+  position: relative;
+  
+  &__inner{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__img{
+    width: 100%;
+    height: 300px;
+    position: relative;
+
+    & > img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content{
+    position: absolute;
+    bottom: -50%;
+    left: 50%;
+    transform: translate(-50%,80%);
+    opacity: 0;
+    transition: all 1s ease;
+    background-color: #fff;
+    width: 80%;
+    z-index: 2;
+    padding: 20px;
+
+    & .button{
+      position: relative;
+    }
+  }
+
+  &__title{
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    line-height: 48px;
+  }
+
+  &__text{
+    letter-spacing: 3px;
+    line-height: 32px;
+    margin-bottom: 24px;
+
+  }
+}
+
+//thought
+
+.thought{
+  width: 100%;
+  height: 430px;
+  margin: 300px 0 150px 0;
+
+  &__img{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    & > img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content{
+    width: 80%;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,80%);
+    opacity: 0;
+    color: #fff;
+    transition: all 1s ease;
+    & .button{
+      &.thought__button{
+        border: 2px solid #fff;
+        &::before{
+          background-color: #fff;
+        }
+      }
+      &:hover{
+        color: #333;
+      }
+    }
+  }
+
+  &__title{
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    line-height: 48px;
+  }
+
+  &__text{
+    letter-spacing: 3px;
+    line-height: 32px;
+    margin-bottom: 24px;
+  }
+
+
+}
+
+//product
+
+.product{
+  margin-bottom: 150px;
+
+  &__maintitle{
+    text-align: center;
+    margin: 56px;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+
+  &__content{
+    width: 100%;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    & > img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all .4s ease;
+      &:hover{
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  &__title{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%)translateY(100%);
+    opacity: 0;
+    transition: all 1s ease;
+    width: 40%;
+    height: auto;
+    padding: 5px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 48px;
+    text-align: center;
+    color: #fff;
+    &.ye{
+      background-color: #d5d46d;
+    }
+
+    &.or{
+      background-color: #e79b0d;
+    }
+    &.pi{
+      background-color: #dac0de;
+    }
+  }
+}
+
+//人気商品
+
+.best{
+  margin-bottom: 150px;
+  &__maintitle{
+    text-align: center;
+    margin: 56px;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+  &__inner{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__item{
+    width: 90%;
+    margin-bottom: 56px;
+    transform: translateY(30%);
+    opacity: 0;
+    transition: all 1s ease;
+    cursor: pointer;
+  }
+
+  &__img{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    & > img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all .4s ease;
+      &:hover{
+        transform: scale(1.2);
+    }
+    }
+    
+  }
+
+  &__title{
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }
+
+  &__price{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  &__text{
+    letter-spacing: 3px;
+    line-height: 32px;
+  }
+}
+
+//news
+
+.news{
+  margin-bottom: 150px;
+
+  &__maintitle{
+    text-align: center;
+    margin: 56px;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+  &__inner{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__item{
+    width: 90%;
+    margin-bottom: 56px;
+    transform: translateY(30%);
+    opacity: 0;
+    transition: all 1s ease;
+  }
+
+  &__img{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    & > img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all .4s ease;
+      &:hover{
+        transform: scale(1.2);
+    }
+    }
+  }
+
+  &__text{
+    letter-spacing: 3px;
+  }
+
+  &__day{
+    letter-spacing: 3px;
+    font-size: 14px;
+    margin: 16px 0;
+  }
+}
+
+//footer
+.footer{
+  width: 100%;
+  background-color: #f8f8f8;
+  
+
+  &__inner{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__left{
+    margin-bottom: 32px;
+  }
+  &__address{
+    margin-top: 16px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    line-height: 32px;
+  }
+
+  &__li{
+    margin-bottom: 32px;
+    font-weight: 500;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+
+  &__right{
+    margin-top: 32px;
+    & .instagram{
+      margin-bottom: 32px;
+    }
+  }
+}
+small{
+  display: flex;
+  justify-content: center;
+}
+
+.inview{
+  &.about{
+    &__content{
+      transform: translateX(-50%);
+      opacity: 1;
+    }
+  }
+  &.thought{
+    &__content{
+      transform: translate(-50%,-50%);
+      opacity: 1;
+    }
+  }
+  &.product{
+    &__title{
+      transform: translateX(-50%);
+      opacity: 1;
+    }
+  }
+  &.best{
+    &__item{
+      transform: none;
+      opacity: 1;
+    }
+  }
+  &.news{
+    &__item{
+      transform: none;
+      opacity: 1;
+    }
+  }
+}
+
+
+//横向きのスマホ
+@media (min-width:600px){
+  //product
+.product{
+  margin-bottom: 150px;
+
+  &__content{
+    height: auto;
+    & > img{
+      vertical-align: bottom;
+    }
+  }
+}
+
+//人気商品
+
+.best{
+  &__inner{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__item{
+    width: 90%;
+    margin-bottom: 56px;
+  }
+
+  &__img{
+    height: auto;
+  }
+}
+
+//news
+
+.news{
+  margin-bottom: 150px;
+
+  &__inner{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__img{
+    height: auto;
+  }
+}
+
+//footer
+.footer{
+  
+
+  &__inner{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  &__center{
+    margin-left: 56px;
+  }
+}
+
+
+}
+//タブレット
+@media (min-width:960px){
+  .inview{
+      &.about{
+        &__content{
+          transform: none;
+          opacity: 1;
+        }
+      }
+      &.thought{
+        &__content{
+          transform: translateY(-50%);
+          opacity: 1;
+        }
+      }
+      &.product{
+        &__title{
+          transform: translateX(-50%);
+          opacity: 1;
+        }
+      }
+      &.best{
+        &__item{
+          transform: none;
+          opacity: 1;
+        }
+      }
+      &.news{
+        &__item{
+          transform: none;
+          opacity: 1;
+        }
+      }
+    }
+    
+  //header
+.header{
+
+  &__nav{
+    display: block;
+  }
+
+  &__ul{
+    display: flex;
+    align-items: center;
+  }
+
+  &__li{
+    margin-left: 40px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    position: relative;
+    &::before{
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #333;
+      transform: translateX(-100%);
+      transition: all .4s ease;
+      opacity: 0;
+    }
+    &:hover{
+      &::before{
+        transform: none;
+        opacity: 1;
+      }
+    }
+  }
+
+  & .ham{
+    display: none;
+  }
+}
+
+//about
+.about{
+  margin: 200px 0;
+  
+  &__inner{
+    width: 90%;
+    flex-direction: row-reverse;
+  }
+
+  &__img{
+    width: 70%;
+    height: auto;
+  }
+
+  &__content{
+    width: 40%;
+    bottom: -40%;
+    left: 10%;
+    transform: none;
+    transform: translateY(30%);
+    opacity: 0;
+    transition: all 2s ease;
+  }
+}
+
+//thought
+
+.thought{
+  margin: 300px 0 200px 0;
+  &__content{
+    width: 40%;
+    right: 20%;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 1s ease;
+  }
+}
+
+//product
+
+.product{
+  margin-bottom: 200px;
+
+  &__container{
+    display: flex;
+  }
+
+  &__content{
+    width: 40%;
+    height: auto;
+  }
+}
+
+//人気商品
+
+.best{
+  &__inner{
+    width: 90%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  &__item{
+    width: 30%;
+    
+    margin-bottom: 0;
+  }
+
+  &__img{
+    height: 200px;
+  }
+}
+
+//news
+
+.news{
+  margin-bottom: 200px;
+
+  &__inner{
+    width: 90%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 24px;
+
+    & .button{
+      margin: 56px auto 0;
+    }
+  }
+
+  &__item{
+    width: 30%;
+    margin-bottom: 0;
+  }
+
+  &__img{
+    height: auto;
+  }
+}
+
+//footer
+.footer{
+  
+
+  &__inner{
+    width: 90%;
+    padding: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  &__center{
+    margin-left: 120px;
+  }
+
+  &__right{
+    margin-top: 0;
+    margin-left: 120px;
+  }
+}
+
+
+
+}
+//pc
+@media (min-width:1280px){
+  //about
+.about{
+  &__content{
+    width: 30%;
+  }
+}
+
+//thought
+
+.thought{
+  &__content{
+    width: 30%;
+  }
+}
+
+
+}
